@@ -14,14 +14,16 @@
 <div class="blog-masthead">
   <div class="container">
     <nav class="blog-nav">
-      <%= link_to 'Home', root_path, class: ([cycle("blog-nav-item"), ('active' if current_page?('/') || current_page?('/articles'))]) %>
-      <%= link_to 'Sign Up', 'signup', class: ([cycle("blog-nav-item"), ('active' if current_page?('/signup'))]) %>
+      <%= link_to 'Home', root_path, class: nav_item_class('/', '/articles') %>
+      <%= link_to 'Sign Up', 'signup', class: nav_item_class('/signup') %>
     </nav>
   </div>
 </div>
 
 <div class="container">
+  <br/>
   <%= yield %>
+  <br/>
 </div>
 
 <footer class="blog-footer">
