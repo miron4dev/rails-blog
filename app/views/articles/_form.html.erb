@@ -3,7 +3,7 @@
   <%= render 'shared/errors', obj: article %>
 
   <div class="form-group">
-    <%= f.label :title %>
+    <%= f.label :title, autofocus: true %>
     <%= f.text_field :title, class: "form-control" %>
   </div>
 
@@ -13,5 +13,5 @@
   </div>
 
   <%= f.submit class: "btn btn-primary" %>
-  <%= link_to 'Back', articles_path, class: "btn btn-default"%>
+  <%= link_to 'Back', articles_path, class: "btn btn-default" %>
 <% end %>
