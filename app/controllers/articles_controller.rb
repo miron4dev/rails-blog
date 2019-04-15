@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -24,10 +25,8 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    #  TODO allow only for the authenticated user
     @article = Article.new(article_params)
-    # TODO  temporary solution
-    @article.user = User.first
+    @article.user = current_user
 
     respond_to do |format|
       if @article.save
@@ -43,7 +42,6 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
-    #  TODO allow only for the author
     respond_to do |format|
       if @article.update(article_params)
         format.html {redirect_to @article, notice: 'Article was successfully updated.'}
@@ -58,7 +56,6 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
-    #  TODO allow only for the author
     @article.destroy
     respond_to do |format|
       format.html {redirect_to articles_url, notice: 'Article was successfully destroyed.'}

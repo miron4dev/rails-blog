@@ -9,7 +9,7 @@
 
   <div class="form-group">
     <%= f.label :username %>
-    <%= f.text_field :username, placeholder: "Enter Username", class: "form-control" %>
+    <%= f.text_field :username, disabled: @user.persisted?, placeholder: "Enter Username", class: "form-control" %>
   </div>
 
   <div class="form-group">

@@ -22,6 +22,10 @@
       <li class="<%= nav_item_class('/users') %>">
         <%= link_to 'List Users', users_path %>
       </li>
+      <% if logged_in? %>
+      <li class="<%= nav_item_class('/users/' + current_user.id.to_s) %>">
+        <%= link_to 'My Profile', user_path(current_user) %>
+      </li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Actions
           <span class="caret"></span>
@@ -30,6 +34,7 @@
           <li><%= link_to 'Create New Article', new_article_path %></li>
         </ul>
       </li>
+      <% end %>
     </ul>
     <form class="navbar-form navbar-left" action="/TODO">
       <div class="form-group">
@@ -40,16 +45,24 @@
       </button>
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li class="<%= nav_item_class('/signup') %>">
-        <%= link_to(signup_path) do %>
-          <span class="glyphicon glyphicon-user"></span> Sign Up
-        <% end %>
-      </li>
-      <li class="<%= nav_item_class('/login') %>">
-        <%= link_to(login_path) do %>
-          <span class="glyphicon glyphicon-log-in"></span> Login
-        <% end %>
-      </li>
+      <% if logged_in? %>
+        <li class="<%= nav_item_class %>">
+          <%= link_to(logout_path, method: :delete) do %>
+            <span class="glyphicon glyphicon-log-out"></span> Logout
+          <% end %>
+        </li>
+      <% else %>
+        <li class="<%= nav_item_class('/signup') %>">
+          <%= link_to(signup_path) do %>
+            <span class="glyphicon glyphicon-user"></span> Sign Up
+          <% end %>
+        </li>
+        <li class="<%= nav_item_class('/login') %>">
+          <%= link_to(login_path) do %>
+            <span class="glyphicon glyphicon-log-in"></span> Login
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>
