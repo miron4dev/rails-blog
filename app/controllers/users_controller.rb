@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   end
 
   def require_current_user
-    if @user != current_user
+    if @user != current_user && !current_user.admin?
       flash[:alert] = "You're not allowed to do this action!"
       redirect_to @user
     end
