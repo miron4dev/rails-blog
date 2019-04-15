@@ -1,4 +1,4 @@
-<% if obj.errors.any? %>
+<% if obj != nil && obj.errors.any? %>
   <div class="panel panel-danger">
     <div class="panel-heading"><%= pluralize(obj.errors.count, "error") %> prohibited from being saved:
     </div>
@@ -9,5 +9,9 @@
         <% end %>
       </ul>
     </div>
+  </div>
+<% elsif alert %>
+  <div id="danger" class="alert alert-danger" role="alert">
+    <%= alert %>
   </div>
 <% end %>

@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
-  before_action :require_user, only: [:new, :create, :edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :require_current_user, only: [:edit, :update, :destroy]
 
   # GET /articles
   # GET /articles.json
@@ -68,6 +69,13 @@ class ArticlesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
+  end
+
+  def require_current_user
+    if @article.user != current_user
+      flash[:alert] = "You're not allowed to do this action!"
+      redirect_to @article
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

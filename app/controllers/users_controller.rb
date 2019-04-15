@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_user, only: [:edit, :update, :destroy]
+  before_action :require_user, except: [:index, :show, :new, :create]
   before_action :set_current_user, only: [:edit, :update, :destroy]
+  before_action :require_current_user, only: [:edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
@@ -56,7 +57,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    current_user.destroy
+    @user.destroy
 
     respond_to do |format|
       format.html {redirect_to root_path, notice: 'User was successfully destroyed.'}
@@ -68,7 +69,14 @@ class UsersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_current_user
-    @user = current_user
+    @user = User.find(params[:id])
+  end
+
+  def require_current_user
+    if @user != current_user
+      flash[:alert] = "You're not allowed to do this action!"
+      redirect_to @user
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
