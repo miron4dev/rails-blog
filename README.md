@@ -1,4 +1,4 @@
-# README
+# Ruby on Rails Sandbox [![Build Status](https://travis-ci.com/miron4dev/rails-blog.svg?branch=master)](https://travis-ci.com/miron4dev/rails-blog)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
