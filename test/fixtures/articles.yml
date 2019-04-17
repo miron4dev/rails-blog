@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  description: MyText
+  title: "User's article"
+  description: "Test user's article description"
+  user: user
 
 two:
-  title: MyString
-  description: MyText
+  title: "Admin's article"
+  description: "Test admin's article description"
+  user: admin

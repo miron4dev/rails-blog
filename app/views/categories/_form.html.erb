@@ -1,0 +1,12 @@
+<%= form_for(category) do |f| %>
+
+  <%= render 'shared/errors', obj: category %>
+
+  <div class="form-group">
+    <%= f.label :name, autofocus: true %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <%= f.submit class: "btn btn-primary" %>
+  <%= link_to('Back', @category.new_record? ? categories_path : category_path(@category.id), class: "btn btn-default") %>
+<% end %>
