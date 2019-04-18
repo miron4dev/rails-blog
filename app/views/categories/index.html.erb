@@ -8,6 +8,7 @@
 
       <div class="blog-post">
         <h3 class="blog-post-title"><%= link_to category.name, category %></h3>
+        <small><%= pluralize(category.articles.count, "article") %></small>
       </div>
     <% end %>
 

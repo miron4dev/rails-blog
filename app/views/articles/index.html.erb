@@ -5,17 +5,12 @@
     <%= render 'shared/messages' %>
 
     <% @articles.each do |article| %>
+      <div>
+        <%= render 'articles/article', article: article %>
 
-      <div class="blog-post">
-        <h2 class="blog-post-title"><%= link_to article.title, article %></h2>
-
-        <p class="blog-post-meta">
-          <%= article.created_at.to_formatted_s(:long) %>
-          by <%= link_to article.user.username, user_path(article.user.id) %>
-        </p>
-
-        <p><%= article.description %></p>
+        <%= link_to 'Read More', article_path(article), class: 'btn btn-default' %>
       </div>
+      <br/>
     <% end %>
 
     <nav>

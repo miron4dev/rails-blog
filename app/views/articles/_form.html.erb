@@ -12,6 +12,12 @@
     <%= f.text_area :description, rows: 15, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.collection_check_boxes :category_ids, Category.all, :id, :name do |checkbox| %>
+      <% checkbox.label(class: "checkbox-inline") {checkbox.check_box(class: "checkbox") + checkbox.text} %>
+    <% end %>
+  </div>
+
   <%= f.submit class: "btn btn-primary" %>
   <%= link_to('Back', @article.new_record? ? articles_path : article_path(@article.id), class: "btn btn-default") %>
 <% end %>
